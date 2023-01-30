@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Dictionary</string>
+    <string name="exit_app">Выйти</string>
+    <string name="new_test">Новый тест</string>
+    <string name="tables">Списки</string>
+
+    <string name="question">Вопрос</string>
+    <string name="answer1">ответ 1</string>
+    <string name="answer2">ответ 2</string>
+    <string name="answer3">ответ 3</string>
+    <string name="answer4">ответ 4</string>
+    <string name="table_name_fill">Название таблицы</string>
+</resources>
