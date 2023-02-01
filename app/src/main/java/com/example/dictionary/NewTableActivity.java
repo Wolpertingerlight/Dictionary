@@ -2,6 +2,7 @@ package com.example.dictionary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,10 +14,14 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import com.example.dictionary.database.DBHelper;
 import com.example.dictionary.models.Table;
 import com.example.dictionary.templates.TableTemplate;
 
 public class NewTableActivity extends AppCompatActivity {
+
+    com.example.dictionary.database.DBHelper dbHelper;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,8 @@ public class NewTableActivity extends AppCompatActivity {
                 String tableName = editNewTableName.getText().toString();
                 table.setTableName(tableName);
                 editTableName.setText(tableName);
+                db.execSQL("INSERT OR IGNORE INTO table_list(name_table)VALUES (" + table.getTableName() + ");");
+
             }
         });
 
@@ -57,8 +64,13 @@ public class NewTableActivity extends AppCompatActivity {
                 table.addToFirstColumn(newWord);
                 table.addToSecondColumn(newTranslate);
 
-                TableTemplate.addRowToTable(tableLayout, NewTableActivity.this, table);
 
+                db = dbHelper.open();
+
+                db.execSQL("INSERT OR IGNORE INTO words VALUES (" + table.getTableName()+");");
+                String normName = db.rawQuery("select * from " + dbHelper.TABLE_LIST, null).getString(0);
+
+                TableTemplate.addRowToTable(tableLayout, NewTableActivity.this, table);
             }
         });
 
