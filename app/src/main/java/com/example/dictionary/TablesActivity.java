@@ -1,26 +1,32 @@
 package com.example.dictionary;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.dictionary.fragments.TableListFragment;
+import com.example.dictionary.models.Table;
 
 public class TablesActivity extends AppCompatActivity {
+
+    public static Table table;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tables);
 
-        Button btnNewTable = findViewById(R.id.btn_new_table);
-        btnNewTable.setOnClickListener(this::onBtnNewTable);
+
+        //FrameLayout frameLayout = findViewById(R.id.fl_table_content);
+
+        TableListFragment tableListFragment = new TableListFragment();
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fl_table_content, tableListFragment);
+        fragmentTransaction.commit();
     }
 
-    private void onBtnNewTable(View view){
-        Intent intent = new Intent(this, NewTableActivity.class);
-        startActivity(intent);
-        //return;
-    }
+
+
 }

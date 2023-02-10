@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.EditTableFragment">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp">
+
+                <EditText
+                    android:id="@+id/new_word"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:hint="Cлово" />
+
+                <EditText
+                    android:id="@+id/new_translate"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:hint="Перевод" />
+
+
+            </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_add_new_row"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Добавить" />
+
+
+
+            <TextView
+                android:id="@+id/table_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/table_name_fill" />
+
+            <TableLayout
+                android:id="@+id/new_table_place"
+                android:layout_width="match_parent"
+                android:layout_height="79dp"></TableLayout>
+
+</FrameLayout>
