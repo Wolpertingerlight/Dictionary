@@ -78,14 +78,19 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public boolean checkDoubles(String str){
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         try{
 
-           String query = "SELECT count(*) from table_list WHERE name_table LIKE \"" + str + "\";";
-           // String query = "SELECT * from table_list where name_table like \"Kek\";";
+           String query = "SELECT * from table_list WHERE name_table LIKE \"" + str + "\";";
+
 
             Cursor cursor = db.rawQuery(query, null);
-            return (cursor.getInt(0) > 0) ? true : false;
+            int count = cursor.getCount();
+
+            //String mess = "--- There is count of string-----: " + Integer.toString(count) ;
+            //Log.i(TAG, mess);
+
+            return (count > 0) ? true : false;
 
         }catch (CursorIndexOutOfBoundsException e ){
 
